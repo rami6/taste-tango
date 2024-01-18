@@ -5,7 +5,7 @@ const alata = Alata({ weight: '400', preload: false })
 
 export default function Home() {
   const logoClasses = `logo ${dancingScript.className} mt-8 text-5xl text-center`
-  const introClasses = `intro ${alata.className} mt-20 text-2xl text-center`
+  const introClasses = `intro ${alata.className} mt-20 text-2xl text-center mx-auto`
 
   return (
     <main>
