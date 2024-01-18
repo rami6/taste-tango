@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+$background: #F5F5F5;
+$primary: #FFC107;
+$accent: #FF5722;
+$text: #212121;
+
+$bg-200: #ebebeb;
+$bg-300: #c2c2c2;
+$primary-200: #dda400;
+$primary-300: #916400;
+$accent-200: #fff3b0;
+$text-200: #484848;
+
+
 :root {
-  background-color: #F5F5F5;
+  background-color: $background;
+}
+
+.logo {
+  color: $accent;
 }
