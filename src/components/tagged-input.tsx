@@ -1,5 +1,7 @@
 'use client'
 
+import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react'
 
 export default function TaggedInput() {
@@ -19,7 +21,7 @@ export default function TaggedInput() {
     setInputValue('')
   }
 
-  const handleTagClick = (tag: string) => {
+  const handleXClick = (tag: string) => {
     setAddedItems((prevTags) => prevTags.filter((t) => t !== tag))
   }
 
@@ -31,17 +33,19 @@ export default function TaggedInput() {
           value={inputValue}
           onChange={handleInputChange}
           onKeyDown={handleKeyChange}
-          placeholder="Type here and hit Enter"
+          placeholder="i.e. soy sauce"
           className="h-10 p-2 w-full mb-4"
         />
         <div className="tag-container flex gap-2 flex-wrap">
           {addedItems.map((tag, index) => (
-            <div
-              key={index}
-              className="tag my-2 px-1"
-              onClick={() => handleTagClick(tag)}
-            >
-              {tag}
+            <div key={index} className="tag my-2 px-1 h-6 leading-6">
+              <span>{tag}</span>
+              <span
+                className="ml-1.5 delete-icon"
+                onClick={() => handleXClick(tag)}
+              >
+                <FontAwesomeIcon icon={faXmark} />
+              </span>
             </div>
           ))}
         </div>

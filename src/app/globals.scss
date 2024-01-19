@@ -41,5 +41,8 @@ $text-200: #484848;
 .tag {
   background-color: $primary;
   color: white;
-  cursor: pointer;
+
+  .delete-icon {
+    cursor: pointer;
+  }
 }
