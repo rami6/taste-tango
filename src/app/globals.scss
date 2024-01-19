@@ -37,3 +37,11 @@ $text-200: #484848;
   from { width: 0 }
   to { width: 100% }
 }
+
+.dropdown-list {
+  z-index: 100;
+  background-color: $bg-200;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  max-height: 150px; /* Set a maximum height for the dropdown list */
+  overflow-y: auto; 
+}
