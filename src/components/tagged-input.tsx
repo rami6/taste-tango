@@ -31,14 +31,14 @@ export default function TaggedInput() {
           value={inputValue}
           onChange={handleInputChange}
           onKeyDown={handleKeyChange}
-          placeholder="Type here..."
-          className="h-10 p-2 w-full"
+          placeholder="Type here and hit Enter"
+          className="h-10 p-2 w-full mb-4"
         />
-        <div className="tag-container">
+        <div className="tag-container flex gap-2 flex-wrap">
           {addedItems.map((tag, index) => (
             <div
               key={index}
-              className="tag"
+              className="tag my-2 px-1"
               onClick={() => handleTagClick(tag)}
             >
               {tag}

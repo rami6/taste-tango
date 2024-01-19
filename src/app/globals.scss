@@ -37,3 +37,9 @@ $text-200: #484848;
   from { width: 0 }
   to { width: 100% }
 }
+
+.tag {
+  background-color: $primary;
+  color: white;
+  cursor: pointer;
+}
