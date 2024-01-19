@@ -20,7 +20,15 @@ export default function TaggedInput() {
       return
     }
 
-    setAddedItems((prev) => [...prev, inputValue])
+    const newItem = inputValue.trim()
+
+    if (!newItem) {
+      return
+    }
+
+    const capitalized = `${newItem.charAt(0).toUpperCase()}${newItem.slice(1)}`
+
+    setAddedItems((prev) => [...prev, capitalized])
     setInputValue('')
   }
 
