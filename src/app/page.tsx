@@ -1,3 +1,4 @@
+import TaggedInput from '@/components/tagged-input'
 import { Dancing_Script, Alata } from 'next/font/google'
 
 const dancingScript = Dancing_Script({ subsets: ['latin'] })
@@ -12,6 +13,9 @@ export default function Home() {
       <div className="container mx-auto max-w-lg p-2">
         <h1 className={logoClasses}>Taste Tango</h1>
         <div className={introClasses}>What do you have?</div>
+        <div className="mt-16">
+          <TaggedInput />
+        </div>
       </div>
     </main>
   )
