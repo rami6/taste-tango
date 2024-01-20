@@ -12,6 +12,7 @@ export default function Home() {
   const logoClasses = `logo ${dancingScript.className} mt-8 text-5xl text-center`
   const introClasses = `intro ${alata.className} mt-20 text-2xl text-center mx-auto`
   const inputClasses = `${caveat.className} h-10 p-3 w-full mb-4 text-2xl`
+  const resultClasses = `result ${dancingScript.className} mt-8 rounded-lg p-3 text-center text-4xl`
 
   const [inputValue, setInputValue] = useState('')
   const [seasonings, setSeasonings] = useState([
@@ -20,6 +21,7 @@ export default function Home() {
     'Tomato paste',
     'Vinegar',
   ] as string[]) // temp initial value
+  const [isResultVisible, setIsResultVisible] = useState(false)
 
   const removeSeasoning = async (itemToRemove: string) => {
     setSeasonings((prev) => prev.filter((val) => val != itemToRemove))
@@ -46,6 +48,10 @@ export default function Home() {
     setInputValue('')
   }
 
+  const handleButtonClick = () => {
+    setIsResultVisible(true)
+  }
+
   return (
     <main>
       <div className="container mx-auto max-w-lg p-2">
@@ -62,6 +68,18 @@ export default function Home() {
           />
           <Tags items={seasonings} removeItem={removeSeasoning} />
         </div>
+        {isResultVisible && (
+          <div className={resultClasses}>
+            <div>result 1</div>
+            <div>result 2</div>
+          </div>
+        )}
+        <button
+          className="mingle-button mt-8 mx-auto block rounded-md p-2 text-xl w-4/5"
+          onClick={handleButtonClick}
+        >
+          {isResultVisible ? 'Mingle again!' : "Let's mingle!"}
+        </button>
       </div>
     </main>
   )
