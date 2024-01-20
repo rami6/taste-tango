@@ -2,7 +2,7 @@
 
 import Tags from '@/components/tags'
 import { Dancing_Script, Alata, Caveat } from 'next/font/google'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 
@@ -18,15 +18,23 @@ export default function Home() {
   const inputClasses = `text-input ${caveat.className} h-10 p-3 w-full mb-4 text-2xl`
   const resultClasses = `result ${dancingScript.className} mt-8 rounded-lg p-3 text-center text-4xl h-80 flex justify-center items-center`
 
+  const SEASONINGS = 'seasonings'
+  const localStorageSeasonings = localStorage.getItem(SEASONINGS)
+  const initialSeasonings = localStorageSeasonings
+    ? localStorageSeasonings.split(',')
+    : ([] as string[])
+
   const [showInputError, setShowInputError] = useState(false)
   const [inputValue, setInputValue] = useState('')
-  const [seasonings, setSeasonings] = useState([
-    'Lemon',
-    'Soy sauce',
-    'Tomato paste',
-    'Vinegar',
-  ] as string[]) // temp initial value
+  const [seasonings, setSeasonings] = useState(initialSeasonings)
   const [results, setResults] = useState([] as string[])
+
+  useEffect(() => {
+    if (!seasonings) {
+      return
+    }
+    localStorage.setItem(SEASONINGS, seasonings.toString())
+  }, [seasonings])
 
   const removeSeasoning = async (itemToRemove: string) => {
     setSeasonings((prev) => prev.filter((val) => val != itemToRemove))
