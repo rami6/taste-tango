@@ -19,15 +19,19 @@ export default function Home() {
   const resultClasses = `result ${dancingScript.className} mt-8 rounded-lg p-3 text-center text-4xl h-80 flex justify-center items-center`
 
   const SEASONINGS = 'seasonings'
-  const localStorageSeasonings = localStorage.getItem(SEASONINGS)
-  const initialSeasonings = localStorageSeasonings
-    ? localStorageSeasonings.split(',')
-    : ([] as string[])
 
   const [showInputError, setShowInputError] = useState(false)
   const [inputValue, setInputValue] = useState('')
-  const [seasonings, setSeasonings] = useState(initialSeasonings)
+  const [seasonings, setSeasonings] = useState([] as string[])
   const [results, setResults] = useState([] as string[])
+
+  useEffect(() => {
+    const localStorageSeasonings = localStorage.getItem(SEASONINGS)
+
+    if (localStorageSeasonings) {
+      setSeasonings(localStorageSeasonings.split(','))
+    }
+  }, [])
 
   useEffect(() => {
     if (!seasonings) {
