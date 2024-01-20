@@ -87,13 +87,22 @@ export default function Home() {
         ) : (
           ''
         )}
-        <button
-          className="mingle-button mt-8 mx-auto block rounded-md p-2 text-xl w-4/5"
-          onClick={handleButtonClick}
-          disabled={seasonings.length < 3}
-        >
-          {results.length ? 'Mingle again!' : "Let's mingle!"}
-        </button>
+        <div className="group">
+          <button
+            className="mingle-button mt-8 mx-auto block rounded-md p-2 text-xl w-4/5"
+            onClick={handleButtonClick}
+            disabled={seasonings.length < 3}
+          >
+            {results.length ? 'Mingle again!' : "Let's mingle!"}
+          </button>
+          {seasonings.length < 3 ? (
+            <div className="tooltip hidden group-hover:block text-center mt-1">
+              *Add 3 or more seasonings to mingle
+            </div>
+          ) : (
+            ''
+          )}
+        </div>
       </div>
     </main>
   )
