@@ -15,7 +15,7 @@ const caveat = Caveat({ subsets: ['latin'] })
 export default function Home() {
   const logoClasses = `logo ${dancingScript.className} mt-8 text-5xl text-center`
   const introClasses = `intro ${alata.className} mt-20 text-2xl text-center mx-auto`
-  const inputClasses = `${caveat.className} h-10 p-3 w-full mb-4 text-2xl`
+  const inputClasses = `text-input ${caveat.className} h-10 p-3 w-full mb-4 text-2xl`
   const resultClasses = `result ${dancingScript.className} mt-8 rounded-lg p-3 text-center text-4xl h-80 flex justify-center items-center`
 
   const [showInputError, setShowInputError] = useState(false)

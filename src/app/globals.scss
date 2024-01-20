@@ -62,5 +62,9 @@ $text-200: #484848;
 }
 
 .input-error {
-  color: $accent;
+  color: $primary-300;
+}
+
+.text-input {
+  outline-color: $primary-300;
 }
