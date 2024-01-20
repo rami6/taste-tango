@@ -50,7 +50,7 @@ export default function Home() {
 
   const generateResult = () => {
     const numOfItems = Math.floor(Math.random() * 3) + 2
-    const shuffled = seasonings.sort(() => 0.5 - Math.random())
+    const shuffled = seasonings.toSorted(() => 0.5 - Math.random())
     setResults(shuffled.slice(0, numOfItems))
   }
 
