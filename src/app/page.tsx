@@ -12,7 +12,7 @@ export default function Home() {
   const logoClasses = `logo ${dancingScript.className} mt-8 text-5xl text-center`
   const introClasses = `intro ${alata.className} mt-20 text-2xl text-center mx-auto`
   const inputClasses = `${caveat.className} h-10 p-3 w-full mb-4 text-2xl`
-  const resultClasses = `result ${dancingScript.className} mt-8 rounded-lg p-3 text-center text-4xl`
+  const resultClasses = `result ${dancingScript.className} mt-8 rounded-lg p-3 text-center text-4xl h-80 flex justify-center items-center`
 
   const [inputValue, setInputValue] = useState('')
   const [seasonings, setSeasonings] = useState([
@@ -21,7 +21,7 @@ export default function Home() {
     'Tomato paste',
     'Vinegar',
   ] as string[]) // temp initial value
-  const [isResultVisible, setIsResultVisible] = useState(false)
+  const [results, setResults] = useState([] as string[])
 
   const removeSeasoning = async (itemToRemove: string) => {
     setSeasonings((prev) => prev.filter((val) => val != itemToRemove))
@@ -48,8 +48,14 @@ export default function Home() {
     setInputValue('')
   }
 
+  const generateResult = () => {
+    const numOfItems = Math.floor(Math.random() * 3) + 2
+    const shuffled = seasonings.sort(() => 0.5 - Math.random())
+    setResults(shuffled.slice(0, numOfItems))
+  }
+
   const handleButtonClick = () => {
-    setIsResultVisible(true)
+    generateResult()
   }
 
   return (
@@ -68,17 +74,25 @@ export default function Home() {
           />
           <Tags items={seasonings} removeItem={removeSeasoning} />
         </div>
-        {isResultVisible && (
+        {results.length ? (
           <div className={resultClasses}>
-            <div>result 1</div>
-            <div>result 2</div>
+            <div>
+              {results.map((result, i) => (
+                <div className="my-6" key={i}>
+                  {result}
+                </div>
+              ))}
+            </div>
           </div>
+        ) : (
+          ''
         )}
         <button
           className="mingle-button mt-8 mx-auto block rounded-md p-2 text-xl w-4/5"
           onClick={handleButtonClick}
+          disabled={seasonings.length < 3}
         >
-          {isResultVisible ? 'Mingle again!' : "Let's mingle!"}
+          {results.length ? 'Mingle again!' : "Let's mingle!"}
         </button>
       </div>
     </main>
