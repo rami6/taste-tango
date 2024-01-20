@@ -3,6 +3,10 @@
 import Tags from '@/components/tags'
 import { Dancing_Script, Alata, Caveat } from 'next/font/google'
 import { useState } from 'react'
+import { config } from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+
+config.autoAddCss = false
 
 const dancingScript = Dancing_Script({ subsets: ['latin'] })
 const alata = Alata({ weight: '400', preload: false })
