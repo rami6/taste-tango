@@ -18,6 +18,7 @@ export default function Home() {
   const inputClasses = `${caveat.className} h-10 p-3 w-full mb-4 text-2xl`
   const resultClasses = `result ${dancingScript.className} mt-8 rounded-lg p-3 text-center text-4xl h-80 flex justify-center items-center`
 
+  const [showInputError, setShowInputError] = useState(false)
   const [inputValue, setInputValue] = useState('')
   const [seasonings, setSeasonings] = useState([
     'Lemon',
@@ -32,6 +33,7 @@ export default function Home() {
   }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setShowInputError(false)
     setInputValue(event.target.value)
   }
 
@@ -47,6 +49,11 @@ export default function Home() {
     }
 
     const capitalized = `${newItem.charAt(0).toUpperCase()}${newItem.slice(1)}`
+
+    if (seasonings.includes(capitalized)) {
+      setShowInputError(true)
+      return
+    }
 
     setSeasonings((prev) => [...prev, capitalized])
     setInputValue('')
@@ -67,7 +74,10 @@ export default function Home() {
       <div className="container mx-auto max-w-lg p-2">
         <h1 className={logoClasses}>Taste Tango</h1>
         <div className={introClasses}>What do you have?</div>
-        <div className="mt-16">
+        <div className="mt-14">
+          <div className="input-error relative z-10 h-6">
+            {showInputError && 'The item already exists'}
+          </div>
           <input
             type="text"
             value={inputValue}
