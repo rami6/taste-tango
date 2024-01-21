@@ -118,7 +118,7 @@ export default function Home() {
         ) : (
           ''
         )}
-        <div className="group">
+        <div className="group mb-4">
           <button
             className="mingle-button mt-8 mx-auto block rounded-md p-2 text-xl w-4/5"
             onClick={handleButtonClick}
