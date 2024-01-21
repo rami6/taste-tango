@@ -20,7 +20,7 @@ export default function Home() {
 
   const SEASONINGS = 'seasonings'
 
-  const [showInputError, setShowInputError] = useState(false)
+  const [inputErrorMessage, setInputErrorMessage] = useState('')
   const [inputValue, setInputValue] = useState('')
   const [seasonings, setSeasonings] = useState([] as string[])
   const [results, setResults] = useState([] as string[])
@@ -45,7 +45,7 @@ export default function Home() {
   }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setShowInputError(false)
+    setInputErrorMessage('')
     setInputValue(event.target.value)
   }
 
@@ -60,10 +60,15 @@ export default function Home() {
       return
     }
 
+    if (newItem.includes(',')) {
+      setInputErrorMessage('The character "," is not allowed')
+      return
+    }
+
     const capitalized = `${newItem.charAt(0).toUpperCase()}${newItem.slice(1)}`
 
     if (seasonings.includes(capitalized)) {
-      setShowInputError(true)
+      setInputErrorMessage('The item already exists')
       return
     }
 
@@ -88,7 +93,7 @@ export default function Home() {
         <div className={introClasses}>What do you have?</div>
         <div className="mt-14">
           <div className="input-error relative z-10 h-6">
-            {showInputError && 'The item already exists'}
+            {inputErrorMessage}
           </div>
           <input
             type="text"
